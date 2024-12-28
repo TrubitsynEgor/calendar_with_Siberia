@@ -1,14 +1,19 @@
 import classes from './App.module.scss'
 import cn from 'classnames'
-import { createYear } from './utils/helpers/date/createYear'
-import { createMonth } from './utils/helpers/date/createMonth'
-
-console.log('createDate', createYear({ locale: 'ru-RU' }).createYearMonths())
+import { Calendar } from './components/Calendar'
+import { formateDate } from './utils'
+import { useState } from 'react'
 
 export const App = () => {
+  const [selectedDate, setSelectedDate] = useState(new Date())
+
   return (
     <div className={cn(classes.app)}>
       <h1>Calendar</h1>
+      <div className="date__container">
+        {formateDate(selectedDate, 'DD MM YYYY')}
+      </div>
+      <Calendar selectDate={setSelectedDate} selectedDate={selectedDate} />
     </div>
   )
 }
