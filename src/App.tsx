@@ -1,9 +1,9 @@
 import classes from './App.module.scss'
 import cn from 'classnames'
-import { createDate } from './utils/helpers/date/createDate'
+import { createYear } from './utils/helpers/date/createYear'
 import { createMonth } from './utils/helpers/date/createMonth'
 
-console.log('createDate', createMonth({ locale: 'ru-RU' }).createMonthDays())
+console.log('createDate', createYear({ locale: 'ru-RU' }).createYearMonths())
 
 export const App = () => {
   return (
