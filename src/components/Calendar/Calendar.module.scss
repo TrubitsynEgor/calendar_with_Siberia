@@ -1,1 +1,44 @@
-.calendar {}
+.calendar {
+	max-width: 20em;
+	border-radius: .5em;
+	text-transform: capitalize;
+	background-color: rgba(#fff, 0.5);
+	color: #242424;
+	padding: 1em;
+
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	box-shadow: 0 2px 10px -1px rgba(#000, 0.6);
+
+}
+
+.header {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: .5em;
+}
+
+
+
+.navBtn {
+	padding: .2em .4em 0;
+
+	&:hover {
+		& svg {
+			stroke: tomato;
+			transition: all .2s ease-in-out;
+
+		}
+	}
+}
+
+.changeModeBtn {
+	background: none;
+	color: #242424;
+	display: flex;
+	gap: .3em;
+	font-size: 1.4em;
+}

@@ -6,9 +6,27 @@
 
   width: 100vw;
   height: 100vh;
+
+  & h1 {
+    margin: 0;
+
+    margin-bottom: .5em;
+
+  }
 }
 
 .light {
   background-color: rgba(#fff, 0.9);
   color: #242424;
+}
+
+.currentDate {
+  background: rgba(#fff, 0.6);
+  padding: .3em 1em;
+  border-radius: .5em;
+  color: #242424;
+  font-weight: bold;
+  font-size: 1.2em;
+  margin-bottom: 1em;
+  box-shadow: 0 2px 10px -1px rgba(#000, 0.6);
 }

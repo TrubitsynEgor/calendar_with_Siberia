@@ -10,7 +10,7 @@ export const App = () => {
   return (
     <div className={cn(classes.app)}>
       <h1>Calendar</h1>
-      <div className="date__container">
+      <div className={classes.currentDate}>
         {formateDate(selectedDate, 'DD MM YYYY')}
       </div>
       <Calendar selectDate={setSelectedDate} selectedDate={selectedDate} />
