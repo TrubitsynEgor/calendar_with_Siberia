@@ -6,8 +6,7 @@
 	color: #242424;
 	padding: 1em;
 
-	display: flex;
-	justify-content: space-between;
+
 	align-items: center;
 	box-shadow: 0 2px 10px -1px rgba(#000, 0.6);
 
@@ -41,4 +40,63 @@
 	display: flex;
 	gap: .3em;
 	font-size: 1.4em;
+
+
+}
+
+.week {
+	height: 1.2em;
+	width: 100%;
+	display: grid;
+	grid-template-columns: repeat(7, 1fr);
+	margin-bottom: .6em;
+
+	& li {
+		justify-self: center;
+		color: rgba(#120a8f, 0.7);
+		transition: all .2s ease-in-out;
+		cursor: pointer;
+		font-weight: 400;
+
+		&:hover {
+			color: #00ffff;
+		}
+	}
+
+}
+
+.days {
+	display: grid;
+	grid-template-columns: repeat(7, 1fr);
+	gap: 1px 1px;
+
+	& li {
+		justify-self: center;
+		transition: all .2s ease-in-out;
+		cursor: pointer;
+		font-weight: 400;
+		padding: .2em .4em;
+		border-radius: .4em;
+
+		&:hover {
+
+			background-color: rgba(#242424, 0.2);
+
+		}
+	}
+}
+
+.additionalDay {
+	color: rgba(#242424, 0.5);
+	font-weight: 300;
+}
+
+.today {
+	background-color: rgba(#242424, 0.5);
+}
+
+.selectedDay {
+	background-color: rgba(#242424, 0.5);
+
+
 }

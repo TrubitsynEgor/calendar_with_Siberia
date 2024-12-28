@@ -119,6 +119,7 @@ export const useCalendar = ({
     },
     methods: {
       setMode,
+      setSelectedDate,
     },
   }
 }

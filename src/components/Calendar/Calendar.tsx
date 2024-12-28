@@ -2,6 +2,7 @@ import classes from './Calendar.module.scss'
 import cn from 'classnames'
 import { useCalendar } from './useCalendar'
 import { SquareChevronLeft, SquareChevronRight } from 'lucide-react'
+import { checkDateIsEqual, checkIsToday } from '../../utils'
 interface CalendarProps {
   locale?: string
   selectedDate: Date
@@ -69,6 +70,48 @@ export const Calendar = ({
         <button className={cn(classes.arrowRight, classes.navBtn)}>
           <SquareChevronRight />
         </button>
+      </div>
+      <div className={classes.body}>
+        {state.mode === 'days' && (
+          <>
+            <ul className={classes.week}>
+              {state.weekDaysNames.map((week) => (
+                <li key={week.dayShort}>{week.dayShort}</li>
+              ))}
+            </ul>
+
+            <ul className={classes.days}>
+              {state.calendarDays.map((day) => {
+                //constants flags
+                const isToday = checkIsToday(day.date)
+
+                const isSelectedDay = checkDateIsEqual(
+                  day.date,
+                  state.selectedDate.date
+                )
+                const isAdditionalDay =
+                  day.monthIdx !== state.selectedMonth.monthIdx
+                //===========================//
+                return (
+                  <li
+                    className={cn(classes.day, {
+                      [classes.additionalDay]: isAdditionalDay,
+                      [classes.selectedDay]: isSelectedDay,
+                      [classes.today]: isToday,
+                    })}
+                    key={`${day.dayNumber}-${day.monthIdx}`}
+                    onClick={() => {
+                      methods.setSelectedDate(day)
+                      selectDate(day.date)
+                    }}
+                  >
+                    {day.dayNumber}
+                  </li>
+                )
+              })}
+            </ul>
+          </>
+        )}
       </div>
     </div>
   )
