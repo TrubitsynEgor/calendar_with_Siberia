@@ -25,7 +25,10 @@ export const Calendar = ({
   return (
     <div className={classes.calendar}>
       <div className={classes.header}>
-        <button className={cn(classes.arrowLeft, classes.navBtn)}>
+        <button
+          onClick={() => methods.onClickArrow('left')}
+          className={cn(classes.arrowLeft, classes.navBtn)}
+        >
           <SquareChevronLeft />
         </button>
         <div className={classes.headerContent}>
@@ -67,11 +70,15 @@ export const Calendar = ({
             </button>
           )}
         </div>
-        <button className={cn(classes.arrowRight, classes.navBtn)}>
+        <button
+          onClick={() => methods.onClickArrow('right')}
+          className={cn(classes.arrowRight, classes.navBtn)}
+        >
           <SquareChevronRight />
         </button>
       </div>
       <div className={classes.body}>
+        {/* Render mode = days */}
         {state.mode === 'days' && (
           <>
             <ul className={classes.week}>
@@ -111,6 +118,72 @@ export const Calendar = ({
               })}
             </ul>
           </>
+        )}
+
+        {/* Render mode = month */}
+        {state.mode === 'month' && (
+          <ul className={classes.monthsPicker}>
+            {state.monthsNames.map((monthName) => {
+              //constants flags
+              const isCurrentMonth =
+                new Date().getMonth() === monthName.monthIdx &&
+                new Date().getFullYear() === state.selectedYear
+
+              const isSelectedMonth =
+                monthName.monthIdx === state.selectedMonth.monthIdx
+              //===========================//
+              return (
+                <li
+                  className={cn(classes.monthsPickerItem, {
+                    [classes.currentMonth]: isCurrentMonth,
+                    [classes.selectedMonth]: isSelectedMonth,
+                  })}
+                  key={monthName.monthShort}
+                  onClick={() => {
+                    methods.setSelectedMonthByIdx(monthName.monthIdx)
+                    methods.setMode('days')
+                  }}
+                >
+                  {monthName.monthShort}
+                </li>
+              )
+            })}
+          </ul>
+        )}
+
+        {/* Render mode = year */}
+        {state.mode === 'year' && (
+          <ul className={classes.yearPicker}>
+            <li className={classes.notActive}>
+              {state.selectedYearInterval[0] - 1}
+            </li>
+            {state.selectedYearInterval.map((y) => {
+              //constants flags
+              const isCurrentYear = new Date().getFullYear() === y
+              const isSelectedYear = y === state.selectedYear
+              //===========================//
+              return (
+                <li
+                  key={y}
+                  className={cn(classes.yearPickerItem, {
+                    [classes.currentYear]: isCurrentYear,
+                    [classes.selectedYear]: isSelectedYear,
+                  })}
+                  onClick={() => {
+                    methods.setSelectedYear(y)
+                    methods.setMode('month')
+                  }}
+                >
+                  {y}
+                </li>
+              )
+            })}
+            <li className={classes.notActive}>
+              {state.selectedYearInterval[
+                state.selectedYearInterval.length - 1
+              ] + 1}
+            </li>
+          </ul>
         )}
       </div>
     </div>
