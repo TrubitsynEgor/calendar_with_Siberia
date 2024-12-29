@@ -1,6 +1,10 @@
 .localeSwitch {
 	display: flex;
-	gap: .4em;
+	gap: .6em;
+	align-items: center;
 
-	& button {}
+	& button {
+		height: 2.4em;
+		padding: 0 .6em;
+	}
 }

@@ -9,12 +9,19 @@ export const App = () => {
   const [selectedDate, setSelectedDate] = useState(new Date())
   const [locale, setLocale] = useState('ru-RU')
 
+  const handleLocale = () =>
+    locale === 'ru-RU' ? setLocale('en-EN') : setLocale('ru-RU')
+
+  console.log(locale)
+
   return (
     <div className={cn(classes.app)}>
-      <h1>Calendar</h1>
-      <LocaleSwitch locale={locale} />
+      <h1>{locale === 'ru-RU' ? 'Календарь' : 'Calendar'}</h1>
+      <LocaleSwitch locale={locale} handleLocale={handleLocale} />
       <div className={classes.currentDate}>
-        {formateDate(selectedDate, 'DD MM YYYY')}
+        {locale === 'ru-RU'
+          ? formateDate(selectedDate, 'DD MM YYYY').replace(' ', '/')
+          : formateDate(selectedDate, 'MM DD YYYY').replace(' ', '/')}
       </div>
       <Calendar
         locale={locale}

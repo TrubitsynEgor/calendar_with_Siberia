@@ -4,7 +4,7 @@ import { useCalendar } from './useCalendar'
 import { SquareChevronLeft, SquareChevronRight } from 'lucide-react'
 import { checkDateIsEqual, checkIsToday } from '../../utils'
 interface CalendarProps {
-  locale?: string
+  locale: string
   selectedDate: Date
   selectDate: (date: Date) => void
   firstDayNumber?: number
@@ -13,7 +13,7 @@ interface CalendarProps {
 export const Calendar = ({
   selectedDate,
   selectDate,
-  locale = 'ru-RU',
+  locale,
   firstDayNumber,
 }: CalendarProps) => {
   const { state, methods } = useCalendar({
@@ -77,6 +77,7 @@ export const Calendar = ({
           <SquareChevronRight />
         </button>
       </div>
+
       <div className={classes.body}>
         {/* Render mode = days */}
         {state.mode === 'days' && (

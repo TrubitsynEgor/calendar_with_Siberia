@@ -35,11 +35,11 @@ export const useCalendar = ({
     getYearsInterval(selectedDate.year)
   )
 
-  const monthsNames = useMemo(() => getMonthsNames(locale), [])
+  const monthsNames = useMemo(() => getMonthsNames(locale), [locale])
 
   const weekDaysNames = useMemo(
     () => getWeekDaysNames(firstDayNumber, locale),
-    []
+    [locale]
   )
 
   const days = useMemo(
